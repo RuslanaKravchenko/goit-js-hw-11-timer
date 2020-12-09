@@ -1,15 +1,8 @@
 import './styles.css';
-const refs = {
-  timerRef: document.querySelector('#timer-1'),
-  daysRef: document.querySelector('[data-value="days"]'),
-  hoursRef: document.querySelector('[data-value="hours"]'),
-  minutesRef: document.querySelector('[data-value="mins"]'),
-  secondsRef: document.querySelector('[data-value="secs"]'),
-};
 
 class CountdownTimer {
   constructor({ selector, targetDate }) {
-    this.selector = selector;
+    this.timerRef = document.querySelector(`${selector}`);
     this.targetDate = targetDate;
   }
 
@@ -30,10 +23,12 @@ class CountdownTimer {
       Math.floor((deltaTime % (1000 * 60 * 60)) / (1000 * 60)),
     );
     const secs = this.pad(Math.floor((deltaTime % (1000 * 60)) / 1000));
-    refs.daysRef.textContent = `${days}`;
-    refs.hoursRef.textContent = `${hours}`;
-    refs.minutesRef.textContent = `${mins}`;
-    refs.secondsRef.textContent = `${secs}`;
+    this.timerRef.querySelector('[data-value="days"]').textContent = `${days}`;
+    this.timerRef.querySelector(
+      '[data-value="hours"]',
+    ).textContent = `${hours}`;
+    this.timerRef.querySelector('[data-value="mins"]').textContent = `${mins}`;
+    this.timerRef.querySelector('[data-value="secs"]').textContent = `${secs}`;
   }
   pad(value) {
     return String(value).padStart(2, '0');
@@ -46,9 +41,14 @@ class CountdownTimer {
   }
 }
 
-const timer = new CountdownTimer({
+const countdownToNewYear = new CountdownTimer({
   selector: '#timer-1',
   targetDate: new Date('Dec 31, 2020'),
+});
+
+const timer = new CountdownTimer({
+  selector: '#timer-2',
+  targetDate: new Date('Dec 12, 2020'),
 });
 
 /*
