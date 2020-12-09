@@ -51,11 +51,6 @@ const timer = new CountdownTimer({
   targetDate: new Date('Dec 31, 2020'),
 });
 
-// const secondCountdownTimer = new CountdownTimer({
-//   selector: '#timer-2',
-//   targetDate: new Date('Dec 9, 2020 00:38 AM'),
-// });
-
 /*
  * Оставшиеся дни: делим значение UTC на 1000 * 60 * 60 * 24, количество
  * миллисекунд в одном дне (миллисекунды * секунды * минуты * часы)
